@@ -33,7 +33,7 @@ echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https:/
 apt-get update
 apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release
 
-apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
 
 docker run hello-world
 
@@ -46,6 +46,9 @@ apt-get install -y kubelet kubeadm kubectl
 apt-mark hold kubelet kubeadm kubectl
 
 systemctl enable docker.service
+systemctl disable conatinerd.service
+systemctl stop containerd.service
+
 
 cat <<EOF | tee /etc/modules-load.d/k8s.conf
 overlay
@@ -84,4 +87,6 @@ systemctl daemon-reload
 systemctl enable cri-docker.service
 systemctl enable --now cri-docker.socket
 
-rm installer_linux cri-dockerd
+#cleanup
+cd
+rm -r installer_linux cri-dockerd/ go/
