@@ -1,0 +1,11 @@
+k3d : k3s+docker
+
+ssl certificates
+
+OKD
+
+Portainer
+
+Install traefik with rancher
+
+nginx ingress controller : kubernetes default ingress controller

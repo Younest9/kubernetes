@@ -1,4 +1,8 @@
 additionalArguments:
+#Enable the API in insecure mode, which means that the API will be available directly on the entryPoint named traefik.
+    - --api.insecure=true
+    - --api.debug=true
+    - --api.dashboard=true
 # Configure your CertificateResolver here...
 # 
 # HTTP Challenge
@@ -10,10 +14,10 @@ additionalArguments:
 #   - --certificatesresolvers.generic.acme.storage=/ssl-certs/acme-generic.json
 #
 # Prod / Staging Example:
-   - --certificatesresolvers.staging.acme.email=younes.elarjouni@imbe.fr
-   - --certificatesresolvers.staging.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory
-   - --certificatesresolvers.staging.acme.httpChallenge.entryPoint=web
-   - --certificatesresolvers.staging.acme.storage=/ssl-certs/acme-staging.json
+#   - --certificatesresolvers.staging.acme.email=younes.elarjouni@imbe.fr
+#   - --certificatesresolvers.staging.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory
+#   - --certificatesresolvers.staging.acme.httpChallenge.entryPoint=web
+#   - --certificatesresolvers.staging.acme.storage=/ssl-certs/acme-staging.json
 #   - --certificatesresolvers.production.acme.email=your-email@example.com
 #   - --certificatesresolvers.production.acme.caServer=https://acme-v02.api.letsencrypt.org/directory
 #   - --certificatesresolvers.production.acme.httpChallenge.entryPoint=web
@@ -38,16 +42,19 @@ logs:
     level: DEBUG
 ports:
 # Configure your entrypoints here...
-  ssh:
-    address: ":22"
+##In ssh's case, it doesn't work for now
+#  ssh:
+#    address: ":22"
+  traefik:
+    address: 172.20.51.17:8080
   web:
     # (optional) Permanent Redirect to HTTPS
     redirectTo: websecure
   websecure:
     tls:
-      enabled: true
+      enabled: false
       # (optional) Set a Default CertResolver
-      certResolver: letsencrypt
+      #certResolver: letsencrypt
   
 
 env:
@@ -70,25 +77,25 @@ env:
 # Disable Dashboard
 ingressRoute:
   dashboard:
-    enabled: false
+    enabled: true
 
 # Persistent Storage
-persistence:
-  enabled: true
-  name: ssl-certs
-  size: 1Gi
-  path: /ssl-certs
+#persistence:
+#  enabled: true
+#  name: ssl-certs
+#  size: 1Gi
+#  path: /ssl-certs
 
-deployment:
-  initContainers:
-    # The "volume-permissions" init container is required if you run into permission issues.
-    # Related issue: https://github.com/containous/traefik/issues/6972
-    - name: volume-permissions
-      image: busybox:1.31.1
-      command: ["sh", "-c", "chmod -Rv 600 /ssl-certs/*"]
-      volumeMounts:
-        - name: ssl-certs
-          mountPath: /ssl-certs
+#deployment:
+#  initContainers:
+#    # The "volume-permissions" init container is required if you run into permission issues.
+#    # Related issue: https://github.com/containous/traefik/issues/6972
+#    - name: volume-permissions
+#      image: busybox:1.31.1
+#      command: ["sh", "-c", "chmod -Rv 600 /ssl-certs/*"]
+#      volumeMounts:
+#        - name: ssl-certs
+#          mountPath: /ssl-certs
 
 # Set Traefik as your default Ingress Controller, according to Kubernetes 1.19+ changes.
 ingressClass:
