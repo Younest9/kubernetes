@@ -30,11 +30,11 @@ spec:
         ports:
         # Ports are the ports that your application uses.
         - containerPort: 8080 # The port that your application uses
-        volumeMounts:
-        # VolumeMounts are the volumes that your application uses.
+        volumeMounts: #Bind Mounts for your application
+        # VolumeMounts are the bind mounts that your application uses.
         - mountPath: <PATH_USED_BY_APP> # The path that your application uses
-          name: <VOLUME_NAME> # Name of the volume
-      volumes:
+          name: <BIND_MOUNT_NAME> # Name of the volume
+      volumes: #Volumes for your application
       # Volumes are the persistent storage that your application uses.
       - name: <VOLUME_NAME> # Name of the volume
         persistentVolumeClaim:
