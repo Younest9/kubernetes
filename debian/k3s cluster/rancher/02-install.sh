@@ -10,6 +10,7 @@ helm install rancher rancher-<CHART_REPO>/rancher \
 #If you are installing an alpha version, Helm requires adding the --devel option to the install command:
 helm install rancher rancher-alpha/rancher --devel
 
+
 ##Let's Encrypt
 #hostname is set to the public DNS record,
 #Set the bootstrapPassword to something unique for the admin user.
