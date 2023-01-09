@@ -3,7 +3,6 @@
 #########################################
 
 #pre processing
-
 ## this will disable swap temporarily, will not presist after a reboot
 swapoff -a
 
