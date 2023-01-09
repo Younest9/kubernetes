@@ -13,5 +13,6 @@ spec:
   - <range-of-ip-addresses>
 EOF
 
+
 #Apply the manifest to specify the ip address pool of metallb 
 kubectl apply -f metallb-pool.yaml
