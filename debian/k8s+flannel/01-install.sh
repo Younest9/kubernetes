@@ -49,8 +49,7 @@ systemctl enable docker.service
 systemctl disable containerd.service
 systemctl stop containerd.service
 
-##Preconfig
-#Forwarding IPv4 and letting iptables see bridged traffic
+
 cat <<EOF | tee /etc/modules-load.d/k8s.conf
 overlay
 br_netfilter
