@@ -1,4 +1,5 @@
 #Aliases
+
 echo 'alias k=kubectl' >>~/.bashrc
 echo "alias kg='kubectl get'" >>~/.bashrc
 echo "alias kgnd='kubectl get nodes'" >>~/.bashrc
