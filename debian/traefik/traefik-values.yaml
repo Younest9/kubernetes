@@ -77,7 +77,7 @@ env:
 # Disable Dashboard
 ingressRoute:
   dashboard:
-    enabled: true
+    enabled: false
 
 # Persistent Storage
 #persistence:
