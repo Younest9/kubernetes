@@ -4,7 +4,7 @@ kubeadm reset -f
 #remove all files related to kubernetes
 rm -rf /etc/cni /etc/kubernetes /var/lib/dockershim /var/lib/etcd /var/lib/kubelet /var/run/kubernetes ~/.kube/*
 
-#
+
 iptables -F && iptables -X
 iptables -t nat -F && iptables -t nat -X
 iptables -t raw -F && iptables -t raw -X
