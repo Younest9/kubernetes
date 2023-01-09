@@ -13,6 +13,7 @@ helm repo add rancher-alpha https://releases.rancher.com/server-charts/alpha
 ###Create a Namespace for Rancher
 kubectl create namespace cattle-system
 
+
 ###Choose your SSL Configuration
 #Rancher Generated Certificates (Default)	: ingress.tls.source=rancher : Requires cert-manager : yes
 #Let’s Encrypt : ingress.tls.source=letsEncrypt : Requires cert-manager : yes
