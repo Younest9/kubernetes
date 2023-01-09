@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: <INGRESS_NAME>
+  namespace: <NAMESPACE_NAME>
+  annotations:
+    # (Optional): Annotations for the Ingress Controller
+    # -- ingress class is needed when traefik is not the default
+    # kubernetes.io/ingress.class: traefik
+    # ---
+    # -- entrypoint and tls configurations
+    # traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
+    # traefik.ingress.kubernetes.io/router.tls: "true"
+    # ---
+    # -- optional middlewares
+    # traefik.ingress.kubernetes.io/router.middlewares:<MIDDLEWARE>@kubernetescrd
+    # ---
+spec:
+  rules:
+  - host: <HOSTNAME> #Optional
+    http:
+      paths:
+      - path: <PATH_ROUTE>
+        pathType: <PATH_TYPE>  #Prefix - Exact - Mixed
+        backend:
+          service:
+            name: <SERVICE_NAME>
+            port:
+              number: 80
+  # (Optional) TLS settings
+  # tls:
+  # - hosts:
+  #   - <HOSTNAME> # Your hostname
+  #   secretName: <SECRET>  # Your TLS Secret
+  # ---
