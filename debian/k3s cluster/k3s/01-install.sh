@@ -15,6 +15,7 @@ net.bridge.bridge-nf-call-ip6tables = 1
 net.ipv4.ip_forward                 = 1
 EOF
 
+
 ##Deploy k3s server (cluster) without embedded DB etcd and without traefik
 curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=<RELEASE_VERSION> K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="server" K3S_TOKEN=<TOKEN> sh -s - server --cluster-init --disable traefik
 
