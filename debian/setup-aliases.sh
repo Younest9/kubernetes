@@ -19,5 +19,6 @@ echo "alias kd='kubectl delete'" >>~/.bashrc
 echo "alias kcf='kubectl create -f'" >>~/.bashrc
 echo "alias kaf='kubectl apply -f'" >>~/.bashrc
 echo "alias kdf='kubectl delete -f'" >>~/.bashrc
+echo "alias kn='kubectl config set-context --current --namespace '" >>~/.bashrc
 echo 'complete -o default -F __start_kubectl k' >>~/.bashrc
 exec bash
