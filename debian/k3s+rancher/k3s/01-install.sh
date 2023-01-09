@@ -1,5 +1,4 @@
 ##Preconfig (prerequisites)
-
 #Forwarding IPv4 and letting iptables see bridged traffic
 cat <<EOF | tee /etc/modules-load.d/k8s.conf
 overlay
