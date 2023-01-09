@@ -17,9 +17,9 @@ apt-get remove docker docker-engine docker.io containerd runc
 # Make a directory to keep the keys (it will do nothing if the directory is already present)
 mkdir -p /etc/apt/keyrings
 
-# Get Docker gpg key for ubuntu
+# Get Docker gpg key for debian
 curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-# Add the repo for docker in ubuntu
+# Add the repo for docker in debian
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 
@@ -46,7 +46,7 @@ apt-get install -y kubelet kubeadm kubectl
 apt-mark hold kubelet kubeadm kubectl
 
 systemctl enable docker.service
-systemctl disable conatinerd.service
+systemctl disable containerd.service
 systemctl stop containerd.service
 
 
