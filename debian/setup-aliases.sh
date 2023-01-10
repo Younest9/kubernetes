@@ -1,6 +1,9 @@
 #Aliases
+echo "# Bash completion">>~/.bashrc
+echo "source /usr/share/bash-completion/bash_completion">>~/.bashrc
 
-echo 'alias k=kubectl' >>~/.bashrc
+echo "# Some aliases for kubectl" >>~/.bashrc
+echo "alias k=kubectl" >>~/.bashrc
 echo "alias kg='kubectl get'" >>~/.bashrc
 echo "alias kgnd='kubectl get nodes'" >>~/.bashrc
 echo "alias kgns='kubectl get namespaces'" >>~/.bashrc
@@ -26,5 +29,6 @@ echo "alias kdsvc='kubectl delete svc'">>~/.bashrc
 echo "alias kdd='kubectl delete deploy'">>~/.bashrc
 echo "alias kdscrt='kubectl delete secret'">>~/.bashrc
 
+echo "# Autocompletion kubectl" >>~/.bashrc
 echo 'complete -o default -F __start_kubectl k' >>~/.bashrc
-exec bash 
+exec bash
