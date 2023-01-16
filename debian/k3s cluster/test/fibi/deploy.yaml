@@ -1,24 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: ssl-front
-  namespace: fibi
-  labels:
-    type: local
-spec:
-  storageClassName: manual
-  capacity:
-    storage: 1Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/etc/ssl/private"
-    type: DirectoryOrCreate
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: ssl-api
+  name: ssl
   namespace: fibi
   labels:
     type: local
@@ -52,19 +35,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: ssl-front
-spec:
-  storageClassName: manual
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: ssl-api
+  name: ssl
 spec:
   storageClassName: manual
   accessModes:
@@ -93,10 +64,10 @@ spec:
   selector:
     app: fibi
   ports:
-    - port: 80
+    - port: 443
       targetPort: 443
-      nodePort: 30000
-  type: NodePort
+      #nodePort: 30000
+  #type: NodePort
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -112,16 +83,6 @@ spec:
       labels:
         app: fibi
     spec:
-      volumes:
-      - name: ssl-front
-        persistentVolumeClaim:
-          claimName: ssl-front
-      - name: tz
-        persistentVolumeClaim:
-          claimName: tz
-      - name: ssl-api
-        persistentVolumeClaim:
-          claimName: ssl-api
       containers:
         - name: fibi-front
           image: registry.osupytheas.fr:443/fibi-front:latest
@@ -132,7 +93,7 @@ spec:
               value: Europe/Paris
           volumeMounts:
             - mountPath: /etc/ssl/private
-              name: ssl-front
+              name: ssl
               readOnly: false
             - mountPath: /etc/timezone
               name: tz
@@ -148,21 +109,16 @@ spec:
           imagePullPolicy: Always
           volumeMounts:
             - mountPath: /etc/ssl/private
-              name: ssl-api
+              name: ssl
               readOnly: false
             - mountPath: /etc/timezone
               name: tz
               readOnly: true
-    #  volumes:
-    #    - name: ssl
-    #      hostPath:
-    #        # chemin du dossier sur l'hôte
-    #        path: /etc/ssl/private
-    #        # ce champ est optionnel
-    #        type: Directory
-    #    - name: tz
-    #      hostPath:
-    #        # chemin du dossier sur l'hôte
-    #        path: /etc/timezone
-    #        # ce champ est optionnel
-    #        type: File
+      volumes:
+      - name: ssl
+        persistentVolumeClaim:
+          claimName: ssl
+      - name: tz
+        persistentVolumeClaim:
+          claimName: tz
+      
