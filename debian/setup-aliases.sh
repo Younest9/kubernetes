@@ -1,34 +1,43 @@
-#Aliases
-echo "# Bash completion">>~/.bashrc
-echo "source /usr/share/bash-completion/bash_completion">>~/.bashrc
+# Aliases
+echo "">>~/.bashrc
+echo "# Alias definitions." >> ~/.bashrc
+echo "# You may want to put all your additions into a separate file like" >>  ~/.bashrc
+echo "# ~/.bash_aliases, instead of adding them here directly." >>  ~/.bashrc
+echo "# See /usr/share/doc/bash-doc/examples in the bash-doc package." >>  ~/.bashrc
+echo "if [ -f ~/.bash_aliases ]; then">> ~/.bashrc
+echo "    . ~/.bash_aliases" >> ~/.bashrc
+echo "fi">> ~/.bashrc
 
-echo "# Some aliases for kubectl" >>~/.bashrc
-echo "alias k=kubectl" >>~/.bashrc
-echo "alias kg='kubectl get'" >>~/.bashrc
-echo "alias kgnd='kubectl get nodes'" >>~/.bashrc
-echo "alias kgns='kubectl get namespaces'" >>~/.bashrc
-echo "alias kgp='kubectl get pods'" >>~/.bashrc
-echo "alias kgd='kubectl get deploy'" >>~/.bashrc
-echo "alias kgs='kubectl get svc'" >>~/.bashrc
-echo "alias kgi='kubectl get ingress'" >>~/.bashrc
-echo "alias kgas='kubectl get all -n kube-system'" >>~/.bashrc
-echo "alias kga='kubectl get all'" >>~/.bashrc
-echo "alias kgaa='kubectl get all -A'" >>~/.bashrc
-echo "alias kgan='kubectl get all -n'" >>~/.bashrc
-echo "alias kl='kubectl logs'" >>~/.bashrc
-echo "alias klf='kubectl logs -f'" >>~/.bashrc
-echo "alias ke='kubectl edit'" >>~/.bashrc
-echo "alias kd='kubectl delete'" >>~/.bashrc
-echo "alias kcf='kubectl create -f'" >>~/.bashrc
-echo "alias kaf='kubectl apply -f'" >>~/.bashrc
-echo "alias kdf='kubectl delete -f'" >>~/.bashrc
-echo "alias kn='kubectl config set-context --current --namespace '" >>~/.bashrc
-echo "alias kdn='kubectl delete ns'">>~/.bashrc
-echo "alias kdi='kubectl delete ingress'">>~/.bashrc
-echo "alias kdsvc='kubectl delete svc'">>~/.bashrc
-echo "alias kdd='kubectl delete deploy'">>~/.bashrc
-echo "alias kdscrt='kubectl delete secret'">>~/.bashrc
+echo "# Bash completion">>~/.bash_aliases
+echo "source /usr/share/bash-completion/bash_completion">>~/.bash_aliases
 
-echo "# Autocompletion kubectl" >>~/.bashrc
-echo 'complete -o default -F __start_kubectl k' >>~/.bashrc
+echo "# Some aliases for kubectl" >>~/.bash_aliases
+echo "alias k=kubectl" >>~/.bash_aliases
+echo "alias kg='kubectl get'" >>~/.bash_aliases
+echo "alias kgnd='kubectl get nodes'" >>~/.bash_aliases
+echo "alias kgns='kubectl get namespaces'" >>~/.bash_aliases
+echo "alias kgp='kubectl get pods'" >>~/.bash_aliases
+echo "alias kgd='kubectl get deploy'" >>~/.bash_aliases
+echo "alias kgs='kubectl get svc'" >>~/.bash_aliases
+echo "alias kgi='kubectl get ingress'" >>~/.bash_aliases
+echo "alias kgas='kubectl get all -n kube-system'" >>~/.bash_aliases
+echo "alias kga='kubectl get all'" >>~/.bash_aliases
+echo "alias kgaa='kubectl get all -A'" >>~/.bash_aliases
+echo "alias kgan='kubectl get all -n'" >>~/.bash_aliases
+echo "alias kl='kubectl logs'" >>~/.bash_aliases
+echo "alias klf='kubectl logs -f'" >>~/.bash_aliases
+echo "alias ke='kubectl edit'" >>~/.bash_aliases
+echo "alias kd='kubectl delete'" >>~/.bash_aliases
+echo "alias kcf='kubectl create -f'" >>~/.bash_aliases
+echo "alias kaf='kubectl apply -f'" >>~/.bash_aliases
+echo "alias kdf='kubectl delete -f'" >>~/.bash_aliases
+echo "alias kn='kubectl config set-context --current --namespace '" >>~/.bash_aliases
+echo "alias kdn='kubectl delete ns'">>~/.bash_aliases
+echo "alias kdi='kubectl delete ingress'">>~/.bash_aliases
+echo "alias kdsvc='kubectl delete svc'">>~/.bash_aliases
+echo "alias kdd='kubectl delete deploy'">>~/.bash_aliases
+echo "alias kdscrt='kubectl delete secret'">>~/.bash_aliases
+
+echo "# Autocompletion kubectl" >>~/.bash_aliases
+echo 'complete -o default -F __start_kubectl k' >>~/.bash_aliases
 exec bash
