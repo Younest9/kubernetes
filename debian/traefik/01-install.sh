@@ -1,4 +1,4 @@
-helm repo add traefik https://traefik.github.io/charts
+helm repo add traefik https://traefik.github.io/charts # https://helm.traefik.io/traefik  ##helm chart of traefik
 
 helm repo update
 
