@@ -21,7 +21,7 @@ spec:
   - http:
       paths:
       - path: /
-        pathType: Exact  #Prefix - Exact - Mixed
+        pathType: Prefix  #Prefix - Exact - Mixed
         backend:
           service:
             name: fibi
