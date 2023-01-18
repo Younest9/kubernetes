@@ -1,0 +1,14 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: fibi
+  namespace: fibi
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - kind: Rule
+    match: Host(`fibi-test.imbe.fr`) && PathPrefix(`/`)
+    services:
+    - name: fibi-internal
+      port: 443
