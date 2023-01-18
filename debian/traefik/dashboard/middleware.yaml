@@ -1,0 +1,8 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: <BASIC_AUTH_MIDDLEWARE>
+  namespace: <NAMESPACE>
+spec:
+  basicAuth:
+    secret: <SECRET_NAME_AUTH>
