@@ -1,6 +1,6 @@
 additionalArguments:
 #Enable the API in insecure mode, which means that the API will be available directly on the entryPoint named traefik.
-    - --api.insecure=true
+  # - --api.insecure=true
     - --api.debug=true
     - --api.dashboard=true
 # Configure your CertificateResolver here...
