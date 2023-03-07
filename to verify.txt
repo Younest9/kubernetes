@@ -3,7 +3,7 @@ https://k3d.io/v5.4.6/
 https://www.youtube.com/watch?v=f10VP3pXbsI
 ssl certificates
 https://www.youtube.com/watch?v=G4CmbYL9UPg&t=45s
-OKD
+OKD (work in progress)
 
 Portainer
 https://www.youtube.com/watch?v=jzhd6tcjvw0&t=754s
