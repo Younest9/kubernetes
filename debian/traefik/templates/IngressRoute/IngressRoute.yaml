@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: <name>
+  namespace: <namespace>
+spec:
+  entryPoints:
+    - <entrypoints>
+  routes:
+    - match: HostSNI(`<hostname-route>`)
+      kind: Rule
+      services:
+        - name: <service-name>
+          port: <service-port>
+  tls:
+    # it allows self signed certificates to pass through and be applied to the route itself
+    - passthrough: true # false        
