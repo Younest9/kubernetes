@@ -1,5 +1,5 @@
-#Uninstall k3s server (cluster)
+# Uninstall k3s server (cluster)
 /usr/local/bin/k3s-uninstall.sh
 
-#Uninstall k3s agent (worker node)
+# Uninstall k3s agent (worker node)
 /usr/local/bin/k3s-agent-uninstall.sh
