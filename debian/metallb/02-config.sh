@@ -13,6 +13,17 @@ spec:
   - <range-of-ip-addresses>
 EOF
 
+# Necessary for metallb to work as expected in L2 mode
+cat <<EOF | tee /root/L2-Advertisement.yaml
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: first-l2-advertisment
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+    - first-pool
+EOF
 
-#Apply the manifest to specify the ip address pool of metallb 
-kubectl apply -f metallb-pool.yaml
+#Apply the manifest to specify the ip address pool of metallb
+kubectl apply -f metallb-pool.yaml -f L2-Advertisement.yaml
