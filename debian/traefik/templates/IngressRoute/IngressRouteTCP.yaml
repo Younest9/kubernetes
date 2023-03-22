@@ -12,4 +12,5 @@ spec:
         - name: <service-name>
           port: <service-port>
   tls:
-    - passthrough: true # false       # it allows self signed certificates on the app to passthrough to the route defined
+    # it allows self signed certificates to pass through and be applied to the route itself
+    - passthrough: true # false
