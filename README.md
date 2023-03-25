@@ -34,16 +34,16 @@ Kubernetes:
 - Does not provide nor adopt any comprehensive machine configuration, maintenance, management, or self-healing systems.
 - Additionally, Kubernetes is not a mere orchestration system. In fact, it eliminates the need for orchestration. The technical definition of orchestration is execution of a defined workflow: first do A, then B, then C. In contrast, Kubernetes comprises a set of independent, composable control processes that continuously drive the current state towards the provided desired state. It shouldn't matter how you get from A to C. Centralized control is also not required. This results in a system that is easier to use and more powerful, robust, resilient, and extensible.
 
-## Flavours
+## Distributions
 
-There are a lot of flavours that kubernetes comes in, but the most known are:
-- The traditional flavour, known as <strong>k8s</strong> : -> [Link to documentation](k8s/README.md)
-- The <strong>Openshift</strong> flavour, which is a kubernetes distribution with a lot of extra features, such as a web console, a CLI, a lot of pre-installed operators, and more: -> [Link to documentation](https://github.com.younest9/ocp/)
-- The <Strong>OKD</Strong> flavour, which is the upstream version of Openshift (Community version). -> [Link to documentation](https://github.com.younest9/okd/)
-- The <strong>Minikube</strong> flavour, which is a single-node kubernetes cluster that runs on your local machine. It's a great way to test kubernetes without having to install it on your machine.
-- The <strong>Microk8s</strong> flavour, which is a low-ops, minimal production Kubernetes.  It provides the functionality of core Kubernetes components, in a small footprint, scalable from a single node to a high-availability production cluster.
-- The <strong>K3s</strong> flavour, which is a lightweight kubernetes distribution that runs as a single binary, it's similar to k8s but it's a lot lighter: -> [Link to documentation](k3s/README.md)
-- The <strong>K3d</strong> flavour, which is a lightweight wrapper to run <strong>k3s</strong> in docker.
+There are a lot of distributions that kubernetes comes in, but the most known are:
+- The traditional distribution, known as <strong>k8s</strong> : -> [Documentation](k8s/README.md)
+- <strong>Openshift</strong>, which is a kubernetes distribution with a lot of extra features, such as a web console, a CLI, a lot of pre-installed operators, and more: -> [Documentation](https://github.com.younest9/ocp/)
+- <Strong>OKD</Strong>, which is the upstream version of Openshift (Community version). -> [Documentation](https://github.com.younest9/okd/)
+- <strong>Minikube</strong>, which is a single-node kubernetes cluster that runs on your local machine. It's a great way to test kubernetes without having to install it on your machine.
+- <strong>Microk8s</strong>, which is a low-ops, minimal production Kubernetes.  It provides the functionality of core Kubernetes components, in a small footprint, scalable from a single node to a high-availability production cluster.
+- <strong>K3s</strong>, which is a lightweight kubernetes distribution that runs as a single binary, it's similar to k8s but it's a lot lighter: -> [Documentation](k3s/README.md)
+- <strong>K3d</strong>, which is a lightweight wrapper to run <strong>k3s</strong> in docker.
 
 Sources: 
 - https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/
