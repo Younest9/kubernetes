@@ -1,4 +1,4 @@
-## k8s
+## k8s cluster setup
 
 Please run everything in the root user to avoid permission issues.
 
