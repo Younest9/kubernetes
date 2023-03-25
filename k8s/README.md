@@ -432,12 +432,43 @@ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documen
 >    You can find more information about pod networks [here](https://kubernetes.io/docs/concepts/cluster-administration/addons/).
 
 
+- Checking the status of the cluster:
 
+```bash
+kubectl get pods --all-namespaces
+```
 
-    
-https://kubernetes.io/docs/setup/production-environment/container-runtimes/
-https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
-https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/
-https://kubernetes.io/docs/concepts/cluster-administration/addons/
-https://github.com/flannel-io/flannel#deploying-flannel-manually
-https://www.youtube.com/watch?v=7bA0gTroJjw&t=890s
+- Joining your nodes:
+
+You can join any number of worker nodes by running the following on each as root:
+
+```bash
+kubeadm join <ip-address-of-cluster>:6443 --token <token-generated> \
+        --discovery-token-ca-cert-hash sha256:<sha256-hash-generated> --cri-socket unix:///var/run/cri-dockerd.sock
+```
+
+>Notes:
+>
+>  - You can get the token and hash by running the following command on the master node:
+>
+>    ```bash
+>    kubeadm token list
+>    ```
+>
+>  - You can get the token and hash by running the following command on the master node:
+>
+>    ```bash
+>    kubeadm token create --print-join-command
+>    ```
+
+References:
+
+- Container runtime : https://kubernetes.io/docs/setup/production-environment/container-runtimes/
+
+- Kubeadm documentation: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/
+
+- Network Addons: https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+- Flannel Addon: https://github.com/flannel-io/flannel#deploying-flannel-manually
+
+- NetworkChuck k8s video: https://www.youtube.com/watch?v=7bA0gTroJjw&t=890s
