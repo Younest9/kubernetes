@@ -1,0 +1,40 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: whoami
+  namespace: dev
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web #8000 traefik
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure #8443 traefik
+    traefik.ingress.kubernetes.io/router.middlewares: dev-test-auth@kubernetescrd #Secret
+    traefik.ingress.kubernetes.io/router.tls.certresolver: le #L'est Encrypt
+    traefik.ingress.kubernetes.io/router.middlewares: dev-https-redirect-scheme@kubernetescrd #Middleware to redirect http to https
+spec:
+  rules:
+  - http:
+        paths:
+          - path: /
+            pathType: Exact
+            backend:
+              service:
+                name: whoami
+                port:
+                  number: 80
+  - http:
+        paths:
+          - path: /1
+            pathType: Exact
+            backend:
+              service:
+                name: whoami
+                port:
+                  number: 80
+  - http:
+        paths:
+          - path: /1/1
+            pathType: Exact
+            backend:
+              service:
+                name: whoami
+                port:
+                  number: 80
