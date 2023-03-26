@@ -326,11 +326,11 @@ sed -i '/ swap / s/^/#/' /etc/fstab
     ```
     
 - Cleanup (Optional)
-```bash	
-# Delete the cri-dockerd folder, and the go folder and the installer_linux file
-cd
-rm -r installer_linux cri-dockerd/ go/
-```
+    ```bash	
+    # Delete the cri-dockerd folder, and the go folder and the installer_linux file
+    cd
+    rm -r installer_linux cri-dockerd/ go/
+    ```
 ### 3. Creating a single control-plane cluster with `kubeadm`:
 
 
@@ -342,7 +342,7 @@ rm -r installer_linux cri-dockerd/ go/
     ```
     >Notes:
     >
-    >- You can use any CIDR range, but it is recommended to use the default CIDR range.
+    >- You can use any CIDR range, but it is recommended to use the default CIDR range. In this example, we are using 10.244.0.0/16 as the CIDR range because it is the default CIDR range for the `flannel` pod network (Refer to [this](https://github.com/flannel-io/flannel#deploying-flannel-manually) for more information).
     >
     >- You can use the `--cri-socket` flag to set the CRI socket to use. If you do not set the socket, `kubeadm` will use the default socket for the container runtime you are using.
     >
@@ -408,60 +408,100 @@ rm -r installer_linux cri-dockerd/ go/
 
 - Copying the kubeconfig file to the `~/.kube` directory:
 
-```bash
-mkdir -p $HOME/.kube
-cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-chown $(id -u):$(id -g) $HOME/.kube/config
-```
+    ```bash
+    mkdir -p $HOME/.kube
+    cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+    chown $(id -u):$(id -g) $HOME/.kube/config
+    ```
 
 - Installing the pod network add-on:
 
-You need to choose a pod network add-on, and a container runtime. You can install a pod network add-on `flannel` with the following command:
+    You need to choose a pod network add-on, and a container runtime. You can install a pod network add-on `flannel` with the following command:
 
-```bash
-kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
-```
->Notes:
->  
->  - You can install other pod network add-ons instead of `flannel`.
->  - You can install a pod network add-on with the following command:
->
->    ```bash
->    kubectl apply -f <add-on.yaml>
->    ```
->    You can find more information about pod networks [here](https://kubernetes.io/docs/concepts/cluster-administration/addons/).
+    ```bash
+    kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+    ```
+    >Notes:
+    >  
+    >  - You can install other pod network add-ons instead of `flannel` like `Calico`.
+    >
+    >  - You can install a pod network add-on with the following command:
+    >
+    >    ```bash
+    >    kubectl apply -f <add-on.yaml>
+    >    ```
+    >    You can find more information about pod networks [here](https://kubernetes.io/docs/concepts/cluster-administration/addons/).
 
 
 - Checking the status of the cluster:
 
+    ```bash
+    kubectl get pods --all-namespaces
+    ```
+
+### 4. Joining nodes:
+
+    You can join any number of worker nodes by running the following on each as root:
+    ```bash
+    kubeadm join <ip-address-of-cluster>:6443 --token <token-generated> \
+            --discovery-token-ca-cert-hash sha256:<sha256-hash-generated> --cri-socket unix:///var/run/cri-dockerd.sock
+    ```
+
+    >#### Notes:
+    >
+    >  - You can get the token and hash by running the following command on the master node:
+    >
+    >    ```bash
+    >    kubeadm token list
+    >    ```
+    >
+    >  - You can get the token and hash by running the following command on the master node:
+    >
+    >    ```bash
+    >    kubeadm token create --print-join-command
+    >    ```
+
+### 5. Deleting the cluster:
+
+You can delete the cluster by running the following command on the master node:
 ```bash
-kubectl get pods --all-namespaces
+kubeadm reset
 ```
-
-- Joining your nodes:
-
-You can join any number of worker nodes by running the following on each as root:
-
-```bash
-kubeadm join <ip-address-of-cluster>:6443 --token <token-generated> \
-        --discovery-token-ca-cert-hash sha256:<sha256-hash-generated> --cri-socket unix:///var/run/cri-dockerd.sock
-```
-
 >Notes:
 >
->  - You can get the token and hash by running the following command on the master node:
+>- You can use `-f` flag to force reset.
+>- You can delete the cluster by running the following command on the worker nodes:
 >
 >    ```bash
->    kubeadm token list
+>    kubeadm reset
 >    ```
->
->  - You can get the token and hash by running the following command on the master node:
->
->    ```bash
->    kubeadm token create --print-join-command
->    ```
+>   You can use `-f` flag to force reset on worker nodes as well
 
-References:
+### 6. Cleaning up the nodes:
+
+You can clean up the nodes by running the following commands on the master and worker nodes:
+```bash
+rm -rf /etc/cni /etc/kubernetes /var/lib/dockershim /var/lib/etcd /var/lib/kubelet /var/run/kubernetes ~/.kube/*
+```
+> This will delete all the files and directories created by kubeadm.
+
+You can reset the iptables by running the following commands on the master and worker nodes:
+```bash
+iptables -F && iptables -X
+iptables -t nat -F && iptables -t nat -X
+iptables -t raw -F && iptables -t raw -X
+iptables -t mangle -F && iptables -t mangle -X
+```
+
+You can uninstall docker and kubernetes related packages by running the following commands on the master and worker nodes:
+```bash
+apt-get purge kubeadm kubectl kubelet kubernetes-cni kube*
+apt-get remove docker docker-engine docker.io containerd runc
+
+apt-get autoremove
+```
+
+#### References:
 
 - Container runtime : https://kubernetes.io/docs/setup/production-environment/container-runtimes/
 
@@ -469,6 +509,6 @@ References:
 
 - Network Addons: https://kubernetes.io/docs/concepts/cluster-administration/addons/
 
-- Flannel Addon: https://github.com/flannel-io/flannel#deploying-flannel-manually
+- Flannel: https://github.com/flannel-io/flannel#deploying-flannel-manually
 
 - NetworkChuck k8s video: https://www.youtube.com/watch?v=7bA0gTroJjw&t=890s
