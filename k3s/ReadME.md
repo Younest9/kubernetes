@@ -23,21 +23,21 @@ K3s is a fully compliant Kubernetes distribution with the following enhancements
 - Wrapped in simple launcher that handles a lot of the complexity of TLS and options.
 - Secure by default with reasonable defaults for lightweight environments.
 - Simple but powerful "batteries-included" features have been added, such as:
-- - Service load balancer
-- - Helm controller
-- - Local storage provider
-- - Traefik ingress controller
+  - Service load balancer
+  - Helm controller
+  - Local storage provider
+  - Traefik ingress controller
 
 - Operation of all Kubernetes control plane components is encapsulated in a single binary and process. This allows K3s to automate and manage complex cluster operations like distributing certificates.
 - External dependencies have been minimized (just a modern kernel and cgroup mounts needed). K3s packages the required dependencies, including:
-- - containerd
-- - Flannel (CNI)
-- - CoreDNS
-- - Host utilities (iptables, socat, etc)
-- - Ingress controller (traefik)
-- - Embedded service load balancer (klipper-lb)
-- - Embedded network policy controller (kube-router)
-- - Embedded local-path-provisioner
+  - containerd
+  - Flannel (CNI)
+  - CoreDNS
+  - Host utilities (iptables, socat, etc)
+  - Ingress controller (traefik)
+  - Embedded service load balancer (klipper-lb)
+  - Embedded network policy controller (kube-router)
+  - Embedded local-path-provisioner
 
 ### Naming
 
