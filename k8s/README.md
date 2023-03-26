@@ -3,6 +3,7 @@ You can select which part you want by jumping to the section you want.
 
 ### Table of Contents
 
+- [Architecture](#architecture)
 - [0. Disable swap](#0-disable-swap)
 - [1. Install Docker](#1-install-docker)
     - [Debian](#debian)
@@ -14,10 +15,6 @@ You can select which part you want by jumping to the section you want.
 - [References](#references)
 
 Please run everything in the root user to avoid permission issues.
-
-### Components
-
-![k8s components](./components-of-kubernetes.svg)
 
 ### Architecture
 
