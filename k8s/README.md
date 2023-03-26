@@ -5,6 +5,8 @@ You can select which part you want by jumping to the section you want.
 
 - [0. Disable swap](#0-disable-swap)
 - [1. Install Docker](#1-install-docker)
+    - [Debian](#debian)
+    - [Ubuntu](#ubuntu)
 - [2. Install kubeadm, kubelet and kubectl](#2-install-kubeadm-kubelet-and-kubectl)
 - [3. Initialize the master node](#3-initialize-the-master-node)
 - [4. Join the worker nodes to the cluster](#4-join-the-worker-nodes-to-the-cluster)
@@ -30,7 +32,7 @@ sed -i '/ swap / s/^/#/' /etc/fstab
 
 ### 1. Install Docker
 
-- Debian
+- #### Debian
 
     Uninstall old versions:
 
@@ -104,7 +106,7 @@ sed -i '/ swap / s/^/#/' /etc/fstab
         >```
         >This command logs you out and back in so that your group membership is re-evaluated. If testing on a virtual machine, it may be necessary to restart the virtual machine for changes to take effect.
 
-- Ubuntu
+- #### Ubuntu
 
     Uninstall old versions:
 
@@ -522,8 +524,9 @@ apt-get autoremove
     - kubeadm token: https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-token/
     - kubeadm token create --print-join-command: https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-token/create/#options
     - Kubeadm documentation: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/
-
+- Docker documentation: https://docs.docker.com/engine/install
+    - Ubuntu: https://docs.docker.com/engine/install/ubuntu/
+    - Debian: https://docs.docker.com/engine/install/debian/
 - Flannel documentation: 
     - Flannel GitHub: https://github.com/flannel-io/flannel#deploying-flannel-manually
-
 - NetworkChuck k8s video: https://www.youtube.com/watch?v=7bA0gTroJjw&t=890s
