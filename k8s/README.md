@@ -15,6 +15,14 @@ You can select which part you want by jumping to the section you want.
 
 Please run everything in the root user to avoid permission issues.
 
+### Components
+
+![k8s components](./components-of-kubernetes.svg)
+
+### Architecture
+
+![k8s architecture](./Architecture.png)
+
 ### 0. Disable swap
 
 >On both master and worker nodes you need to disable swap. This is required for the kubelet to work properly.
