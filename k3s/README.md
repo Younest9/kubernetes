@@ -1,5 +1,19 @@
 ## k3s cluster setup
 
+You can select which part you want by jumping to the section you want.
+
+### Table of Contents
+
+- [Overview](#overview)
+- [What is K3s?](#what-is-k3s)
+- [Naming](#naming)
+- [Architecture](#architecture)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Troubleshooting](#troubleshooting)
+- [References](#references)
+
 ### Overview
 
 K3s is a Lightweight Kubernetes. Easy to install, half the memory, all in a binary of less than 100 MB.
