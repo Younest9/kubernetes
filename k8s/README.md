@@ -18,7 +18,7 @@ Please run everything in the root user to avoid permission issues.
 
 ### Architecture
 
-![k8s architecture](./Architecture.png)
+![k8s architecture](./Architecture%20k8s.png)
 
 ### 0. Disable swap
 
