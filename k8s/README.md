@@ -1,5 +1,8 @@
 ## k8s cluster setup
 You can select which part you want by jumping to the section you want.
+
+### Table of Contents
+
 - [0. Disable swap](#0-disable-swap)
 - [1. Install Docker](#1-install-docker)
 - [2. Install kubeadm, kubelet and kubectl](#2-install-kubeadm-kubelet-and-kubectl)
