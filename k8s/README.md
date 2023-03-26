@@ -1,4 +1,12 @@
 ## k8s cluster setup
+You can select which part you want by jumping to the section you want.
+- [0. Disable swap](#0-disable-swap)
+- [1. Install Docker](#1-install-docker)
+- [2. Install kubeadm, kubelet and kubectl](#2-install-kubeadm-kubelet-and-kubectl)
+- [3. Initialize the master node](#3-initialize-the-master-node)
+- [4. Join the worker nodes to the cluster](#4-join-the-worker-nodes-to-the-cluster)
+- [5. Install a pod network](#5-install-a-pod-network)
+- [References](#references)
 
 Please run everything in the root user to avoid permission issues.
 
