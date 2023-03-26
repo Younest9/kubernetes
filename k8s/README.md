@@ -503,12 +503,16 @@ apt-get autoremove
 
 #### References:
 
-- Container runtime : https://kubernetes.io/docs/setup/production-environment/container-runtimes/
+- Kubernetes documentation: https://kubernetes.io/docs/home/
+    - Kubeadm: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/
+    - Container runtime : https://kubernetes.io/docs/setup/production-environment/container-runtimes/
+    - Pod network add-ons: https://kubernetes.io/docs/concepts/cluster-administration/addons/
+    - kubeadm reset: https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-reset/
+    - kubeadm token: https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-token/
+    - kubeadm token create --print-join-command: https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-token/create/#options
+    - Kubeadm documentation: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/
 
-- Kubeadm documentation: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/
-
-- Network Addons: https://kubernetes.io/docs/concepts/cluster-administration/addons/
-
-- Flannel GitHub: https://github.com/flannel-io/flannel#deploying-flannel-manually
+- Flannel documentation: 
+    - Flannel GitHub: https://github.com/flannel-io/flannel#deploying-flannel-manually
 
 - NetworkChuck k8s video: https://www.youtube.com/watch?v=7bA0gTroJjw&t=890s
