@@ -509,6 +509,6 @@ apt-get autoremove
 
 - Network Addons: https://kubernetes.io/docs/concepts/cluster-administration/addons/
 
-- Flannel: https://github.com/flannel-io/flannel#deploying-flannel-manually
+- Flannel GitHub: https://github.com/flannel-io/flannel#deploying-flannel-manually
 
 - NetworkChuck k8s video: https://www.youtube.com/watch?v=7bA0gTroJjw&t=890s
