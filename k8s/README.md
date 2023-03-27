@@ -11,8 +11,9 @@ You can select which part you want by jumping to the section you want.
 - [2. Install kubeadm, kubelet and kubectl](#2-install-kubeadm-kubelet-and-kubectl)
 - [3. Initialize the master node](#3-initialize-the-master-node)
 - [4. Join the worker nodes to the cluster](#4-join-the-worker-nodes-to-the-cluster)
-- [5. Install a pod network](#5-install-a-pod-network)
-- [References](#references)
+- [5. SSH tunneling](#5-ssh-tunneling)
+- [6. Deleting the cluster](#6-deleting-the-cluster)
+- [7. Cleaning up the nodes](#7-cleaning-up-the-nodes)
 
 Please run everything in the root user to avoid permission issues.
 
@@ -459,7 +460,7 @@ sed -i '/ swap / s/^/#/' /etc/fstab
 
 ### 4. Joining nodes:
 
-    You can join any number of worker nodes by running the following on each as root:
+- You can join any number of worker nodes by running the following on each as root:
     ```bash
     kubeadm join <ip-address-of-cluster>:6443 --token <token-generated> \
             --discovery-token-ca-cert-hash sha256:<sha256-hash-generated> --cri-socket unix:///var/run/cri-dockerd.sock
@@ -479,7 +480,13 @@ sed -i '/ swap / s/^/#/' /etc/fstab
     >    kubeadm token create --print-join-command
     >    ```
 
-### 5. Deleting the cluster:
+### 5. SSH Tunneling
+
+If you want to access your kubernetes workloads using SSH, you can use SSH tunneling.
+
+You can check that in the [SSH-Tunneling.md](../SSH%20Tunneling.md) file.
+
+### 6. Deleting the cluster:
 
 You can delete the cluster by running the following command on the master node:
 ```bash
@@ -495,7 +502,7 @@ kubeadm reset
 >    ```
 >   You can use `-f` flag to force reset on worker nodes as well
 
-### 6. Cleaning up the nodes:
+### 7. Cleaning up the nodes:
 
 You can clean up the nodes by running the following commands on the master and worker nodes:
 ```bash
