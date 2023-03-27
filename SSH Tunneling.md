@@ -1,8 +1,8 @@
 ## SSH Remote forwading
 
-We are going to create a bastion host with SSH server and enable remote forwarding for a specific user (dev). This user will be able to connect to a remote host using SSH tunnel.
+We are going to create a bastion host with SSH server and enable remote forwarding for a specific user `(dev)`. This user will be able to connect to a remote host using SSH tunnel.
 
-- Create a Docker image with SSH server (bastion host) and enable remote forwarding for a specific user : dev (based on linuxserver/openssh-server image)
+- Create a Docker image with SSH server (bastion host) and enable remote forwarding for a specific user : `dev` (based on `linuxserver/openssh-server` image)
 
     ```Dockerfile
     FROM lscr.io/linuxserver/openssh-server:latest
