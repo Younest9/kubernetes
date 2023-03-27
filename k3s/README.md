@@ -11,6 +11,8 @@ You can select which part you want by jumping to the section you want.
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Configuration](#configuration)
+- [SSH Tunneling](#ssh-tunneling)
+- [Uninstallation](#uninstallation)
 - [Troubleshooting](#troubleshooting)
 - [References](#references)
 
@@ -243,6 +245,12 @@ Whether you're configuring K3s to run in a container or as a native Linux servic
     ```
 > Replace `<SERVER_IP>` with the IP address of the server.
 
+### SSH Tunneling
+
+If you want to access your kubernetes workloads using SSH, you can use SSH tunneling.
+
+You can check that in the [SSH-Tunneling.md](../SSH%20Tunneling.md) file.
+
 ### Uninstallation
 - Uninstall k3s server (cluster)
     ```bash
@@ -289,13 +297,6 @@ Whether you're configuring K3s to run in a container or as a native Linux servic
     ```bash
     ps -ef | grep k3s
     ```
-
-
-### SSH Tunneling
-
-If you want to access your kubernetes workloads using SSH, you can use SSH tunneling.
-
-You can check that in the [SSH-Tunneling.md](../SSH%20Tunneling.md) file.
 
 #### References
 
