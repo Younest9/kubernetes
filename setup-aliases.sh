@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Change default editor for kubernetes cluster
 echo "# Change default editor for kubernetes cluster"
 echo "export KUBE_EDITOR=<FAVORITE_EDITOR>" >>~/.bash_profile
