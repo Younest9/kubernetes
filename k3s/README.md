@@ -290,6 +290,13 @@ Whether you're configuring K3s to run in a container or as a native Linux servic
     ps -ef | grep k3s
     ```
 
+
+### SSH Tunneling
+
+If you want to access your kubernetes workloads using SSH, you can use SSH tunneling.
+
+You can check that in the [SSH-Tunneling.md](../SSH%20Tunneling.md) file.
+
 #### References
 
 - K3s documentation: https://k3s.io/
