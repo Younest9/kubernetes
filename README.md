@@ -74,9 +74,10 @@ chmod +x setup-aliases.sh
 
 
 Sources: 
-- https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/
-- https://microk8s.io/docs
-- https://k3s.io/docs/
-- https://k3d.io/
-- https://docs.openshift.com/
-- https://docs.okd.io/
+- Kubernetes documentation: https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/
+- Microk8s documentation: https://microk8s.io/docs
+- Minikube documentation: https://minikube.sigs.k8s.io/docs/
+- K3s documentation: https://k3s.io/docs/
+- K3d documentation: https://k3d.io/
+- Openshift documentation: https://docs.openshift.com/
+- OKD documentation: https://docs.okd.io/
