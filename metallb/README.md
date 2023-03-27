@@ -19,14 +19,14 @@ MetalLB requires a network addon to be installed on your cluster. The following 
 
 | Network Addon | Compatibility | Comments |
 | --- | --- | --- |
-| [Antrea](https://github.com/jayunit100/k8sprototypes/tree/master/kind/metallb-antrea) | ✅ |
-| [Calico](https://docs.tigera.io/calico/latest/about) | ✅  | (Mostly - [See Known Issues](https://metallb.universe.tf/configuration/calico/))
-| [Canal](https://docs.projectcalico.org/getting-started/kubernetes/flannel/flannel) | ✅ |
-| [Cilium](https://docs.cilium.io/en/stable/) | ✅ |
-| [Flannel](https://github.com/flannel-io/flannel) | ✅ |
-| [Kube-ovn](https://kubeovn.github.io/docs/v1.11.x/en/start/prepare/) | ✅ |
-| [Kube-router](https://www.kube-router.io/docs/) | ✅  | (Mostly - [See Known Issues](https://metallb.universe.tf/configuration/kube-router/))
-| [Weave Net](https://www.weave.works/docs/net/latest/kubernetes/kube-addon/) | ✅  | (Mostly - [See Known Issues](https://metallb.universe.tf/configuration/weave/))
+| [Antrea](https://github.com/jayunit100/k8sprototypes/tree/master/kind/metallb-antrea) | ✅ | |
+| [Calico](https://docs.tigera.io/calico/latest/about) | ✅  | (Mostly - [See Known Issues](https://metallb.universe.tf/configuration/calico/)) |
+| [Canal](https://docs.projectcalico.org/getting-started/kubernetes/flannel/flannel) | ✅ | |
+| [Cilium](https://docs.cilium.io/en/stable/) | ✅ | |
+| [Flannel](https://github.com/flannel-io/flannel) | ✅ | |
+| [Kube-ovn](https://kubeovn.github.io/docs/v1.11.x/en/start/prepare/) | ✅ | |
+| [Kube-router](https://www.kube-router.io/docs/) | ✅  | (Mostly - [See Known Issues](https://metallb.universe.tf/configuration/kube-router/)) |
+| [Weave Net](https://www.weave.works/docs/net/latest/kubernetes/kube-addon/) | ✅  | (Mostly - [See Known Issues](https://metallb.universe.tf/configuration/weave/)) |
 </div>
 
 #### Configuration
