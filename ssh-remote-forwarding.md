@@ -2,7 +2,7 @@
 
 We are going to create a bastion host with SSH server and enable remote forwarding for a specific user (dev). This user will be able to connect to a remote host using SSH tunnel.
 
-- ### Create a Docker image with SSH server (bastion host) and enable remote forwarding for a specific user : dev (based on linuxserver/openssh-server image)
+- Create a Docker image with SSH server (bastion host) and enable remote forwarding for a specific user : dev (based on linuxserver/openssh-server image)
 
     ```Dockerfile
     FROM lscr.io/linuxserver/openssh-server:latest
@@ -13,7 +13,7 @@ We are going to create a bastion host with SSH server and enable remote forwardi
     RUN echo "  AllowAgentForwarding yes" >> /etc/ssh/sshd_config
     ```
 
-- ### Create a Deployment with the image created above
+- Create a Deployment with the image created above
 
     ```yaml
     apiVersion: apps/v1
@@ -55,7 +55,7 @@ We are going to create a bastion host with SSH server and enable remote forwardi
                 value: "true" # optional
     ```
 
-- ### Create a Service to expose the SSH server 
+- Create a Service to expose the SSH server 
 
     ```yaml
     apiVersion: v1
@@ -76,7 +76,7 @@ We are going to create a bastion host with SSH server and enable remote forwardi
             app: <name>
     ```
 
-- ### Create an ingressRoute 
+- Create an ingressRoute 
 
     ```yaml
     apiVersion: traefik.containo.us/v1alpha1
@@ -94,10 +94,10 @@ We are going to create a bastion host with SSH server and enable remote forwardi
                   port: <service-port>
     ```
 
-- ### SSH tunnel
+- SSH tunnel
 
-    Use this command:
+    - Use this command:
 
-    ```bash
-    ssh -J dev@<bastion-hostname>:<port> <user-on-remote-host>@<remote-hostname>
-    ```
+        ```bash
+        ssh -J dev@<bastion-hostname>:<port> <user-on-remote-host>@<remote-hostname>
+        ```
