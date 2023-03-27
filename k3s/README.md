@@ -14,7 +14,6 @@ You can select which part you want by jumping to the section you want.
 - [SSH Tunneling](#ssh-tunneling)
 - [Uninstallation](#uninstallation)
 - [Troubleshooting](#troubleshooting)
-- [References](#references)
 
 ### Overview
 
