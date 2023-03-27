@@ -51,6 +51,9 @@ There are a lot of distributions that kubernetes comes in, but the most known ar
 - <strong>K3s</strong>, which is a lightweight kubernetes distribution that runs as a single binary, it's similar to k8s but it's a lot lighter: -> [Documentation](k3s/README.md)
 - <strong>K3d</strong>, which is a lightweight wrapper to run <strong>k3s</strong> in docker.
 
+>Note: 
+> - You can run kubernetes on RancherOS using <strong>RKE</strong> (Rancher Kubernetes Engine), which is a lightweight Kubernetes installer that works everywhere. You can work that out after looking here -> [RancherOS Documentation](rancheros/README.md)
+
 ## Aliases - Optional
 
 You can check aliases that are in the [setup-aliases.sh](setup-aliases.sh).
