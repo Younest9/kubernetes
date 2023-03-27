@@ -1,10 +1,10 @@
 # Kubernetes
-- ### [Overview](#overview)
-- ### [Why Kubernetes ?](#why-kubernetes-?)
-- ### [What Kubernetes is not](#what-kubernetes-is-not)
-- ### [Distributions](#distributions)
-- ### [SSH Tunneling](#ssh-tunneling)
-- ### [Aliases - Optional](#aliases---optional)
+-  [Overview](#overview)
+-  [Why Kubernetes ?](#why-kubernetes-?)
+-  [What Kubernetes is not](#what-kubernetes-is-not)
+-  [Distributions](#distributions)
+-  [SSH Tunneling](#ssh-tunneling)
+-  [Aliases - Optional](#aliases---optional)
 
 ## Overview 
 
