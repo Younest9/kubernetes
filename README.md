@@ -45,6 +45,20 @@ There are a lot of distributions that kubernetes comes in, but the most known ar
 - <strong>K3s</strong>, which is a lightweight kubernetes distribution that runs as a single binary, it's similar to k8s but it's a lot lighter: -> [Documentation](k3s/README.md)
 - <strong>K3d</strong>, which is a lightweight wrapper to run <strong>k3s</strong> in docker.
 
+## Aliases - Optional
+
+You can check aliases that are in the [setup-aliases.sh](setup-aliases.sh).
+If you want to use them, you can run the script and it will add them to your .bashrc file.
+Run the following command:
+```bash
+chmod +x setup-aliases.sh
+./setup-aliases.sh
+```
+>Notes:
+>
+>- You can also add other aliases manually to your .bashrc file.
+>- You can also remove the aliases that you don't want to use.
+
 Sources: 
 - https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/
 - https://microk8s.io/docs
