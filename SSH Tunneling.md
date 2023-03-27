@@ -9,9 +9,11 @@ We are going to create a bastion host with SSH server and enable remote forwardi
     RUN echo "Match User dev" >> /etc/ssh/sshd_config
     RUN echo "  AllowTcpForwarding yes" >> /etc/ssh/sshd_config
     RUN echo "  X11Forwarding yes" >> /etc/ssh/sshd_config
-    RUN echo "  PermitTunnel yes" >> /etc/ssh/sshd_config
     RUN echo "  AllowAgentForwarding yes" >> /etc/ssh/sshd_config
     ```
+    >Note:
+    >- The user dev is created in the base image
+    >- The 3 following lines are added to the sshd_config file to enable remote forwarding for the user dev, it has to be done on the remote host too.
 
 - Create a Deployment with the image created above
 
