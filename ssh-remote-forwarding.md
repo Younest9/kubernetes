@@ -2,7 +2,7 @@
 
 We are going to create a bastion host with SSH server and enable remote forwarding for a specific user (dev). This user will be able to connect to a remote host using SSH tunnel.
 
-- ### Create a Docker image with SSH server (bastion host) and enable remote forwarding for a specific user : dev 
+- ### Create a Docker image with SSH server (bastion host) and enable remote forwarding for a specific user : dev (based on linuxserver/openssh-server image)
 
     ```Dockerfile
     FROM lscr.io/linuxserver/openssh-server:latest
@@ -19,40 +19,40 @@ We are going to create a bastion host with SSH server and enable remote forwardi
     apiVersion: apps/v1
     kind: Deployment
     metadata:
-    name: <name>
-    namespace: <namespace>
+        name: <name>
+        namespace: <namespace>
     labels:
         app: <name>
     spec:
-    replicas: 1
-    selector:
-        matchLabels:
-        app: <name>
-    template:
-        metadata:
-        labels:
+        replicas: 1
+        selector:
+            matchLabels:
             app: <name>
-        spec:
-        containers:
-        - name: <name>
-            image: <image-name>
-            ports:
-            - containerPort: 2222
-            env:
-            - name: PUID
-            value: "1000"
-            - name: PGID
-            value: "1000"
-            - name: TZ
-            value: "Europe/Paris"
-            - name: USER_NAME
-            value: "dev"
-            - name: USER_PASSWORD
-            value: " "
-            - name: PASSWORD_ACCESS
-            value: "true"
-            - name: SUDO_ACCESS
-            value: "true"
+        template:
+            metadata:
+            labels:
+                app: <name>
+            spec:
+            containers:
+            - name: <name>
+                image: <image-name>
+                ports:
+                - containerPort: 2222
+                env:
+                - name: PUID # optional
+                value: "1000" # optional
+                - name: PGID # optional
+                value: "1000" # optional
+                - name: TZ # optional
+                value: "Europe/Paris" # optional
+                - name: USER_NAME
+                value: "dev"
+                - name: USER_PASSWORD
+                value: <password> # I
+                - name: PASSWORD_ACCESS
+                value: "true"
+                - name: SUDO_ACCESS # optional
+                value: "true" # optional
     ```
 
 - ### Create a Service to expose the SSH server 
@@ -61,19 +61,19 @@ We are going to create a bastion host with SSH server and enable remote forwardi
     apiVersion: v1
     kind: Service
     metadata:
-    name: openssh
-    namespace: dev
-    labels:
-        app: openssh
+        name: <name>
+        namespace: <namespace> 
+        labels:
+            app: <name>
     spec:
-    type: ClusterIP
-    
-    ports:
-    - port: 22
-        targetPort: 2222
+        type: ClusterIP # optional (default)
+        
+        ports:
+        - port: 22 
+          targetPort: 2222 
         protocol: TCP
-    selector:
-        app: openssh
+        selector:
+            app: <name>
     ```
 
 - ### Create an ingressRoute 
@@ -82,16 +82,16 @@ We are going to create a bastion host with SSH server and enable remote forwardi
     apiVersion: traefik.containo.us/v1alpha1
     kind: IngressRouteTCP
     metadata:
-    name: openssh
-    namespace: dev
+        name: <name>
+        namespace: <namespace>
     spec:
-    entryPoints:
-        - ssh
-    routes:
-        - match: HostSNI(`*`)
-        services:
-            - name: openssh
-            port: 22
+        entryPoints:
+            - ssh # entrypoint defined in traefik config
+        routes:
+            - match: HostSNI(`*`) # match all hosts
+            services:
+                - name: <service-name>
+                  port: <service-port>
     ```
 
 - ### SSH tunnel
@@ -99,5 +99,5 @@ We are going to create a bastion host with SSH server and enable remote forwardi
     Use this command:
 
     ```bash
-    ssh -J dev@<bastion-hostname>:<port> root@<remote-hostname>
+    ssh -J dev@<bastion-hostname>:<port> <user-on-remote-host>@<remote-hostname>
     ```
