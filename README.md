@@ -64,7 +64,7 @@ chmod +x setup-aliases.sh
 
 If you want to access your kubernetes workloads using SSH, you can use SSH tunneling.
 
-You can check that in the [SSH-Tunneling.md](ssh-tunneling.md).
+You can check that in the [SSH-Tunneling.md](SSH%20Tunneling.md.md).
 
 Sources: 
 - https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/
