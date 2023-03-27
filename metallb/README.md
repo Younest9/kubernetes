@@ -15,8 +15,6 @@ MetalLB runs on your Kubernetes cluster, and announces services by creating BGP 
 #### Network Addons
 
 MetalLB requires a network addon to be installed on your cluster. The following network addons are supported:
-
-<div style="text-align: center">
   
 | Network Addon | Compatibility | Comments |
 | --- | --- | --- |
