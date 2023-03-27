@@ -54,10 +54,17 @@ Run the following command:
 chmod +x setup-aliases.sh
 ./setup-aliases.sh
 ```
+
 >Notes:
 >
 >- You can also add other aliases manually to your .bashrc file.
 >- You can also remove the aliases that you don't want to use.
+
+## SSH Tunneling
+
+If you want to access your kubernetes workloads using SSH, you can use SSH tunneling.
+
+You can check that in the [SSH-Tunneling.md](ssh-tunneling.md).
 
 Sources: 
 - https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/
