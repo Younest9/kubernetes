@@ -83,110 +83,110 @@ The Layer 2 configuration is the simplest way to get started with MetalLB. It re
 
 - #### Install MetalLB
 
-To install MetalLB in Layer 2 mode, run the following command:
+    To install MetalLB in Layer 2 mode, run the following command:
 
-```bash
-kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.9/config/manifests/metallb-native.yaml
-```
-> Note: If you want to deploy MetalLB using the FRR mode, apply the manifests:
-> ```bash
-> kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.9/config/manifests/metallb-frr.yaml
-> ```
+    ```bash
+    kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.9/config/manifests/metallb-native.yaml
+    ```
+    > Note: If you want to deploy MetalLB using the FRR mode, apply the manifests:
+    > ```bash
+    > kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.9/config/manifests/metallb-frr.yaml
+    > ```
 
-This will deploy MetalLB to your cluster, under the metallb-system namespace. The components in the manifest are:
+    This will deploy MetalLB to your cluster, under the metallb-system namespace. The components in the manifest are:
 
-    The metallb-system/controller deployment. This is the cluster-wide controller that handles IP address assignments.
-    The metallb-system/speaker daemonset. This is the component that speaks the protocol(s) of your choice to make the services reachable.
-    Service accounts for the controller and speaker, along with the RBAC permissions that the components need to function.
+        The metallb-system/controller deployment. This is the cluster-wide controller that handles IP address assignments.
+        The metallb-system/speaker daemonset. This is the component that speaks the protocol(s) of your choice to make the services reachable.
+        Service accounts for the controller and speaker, along with the RBAC permissions that the components need to function.
 
-The installation manifest does not include a configuration file. MetalLB’s components will still start, but will remain idle until you start [deploying resources](#configure-metallb).
+    The installation manifest does not include a configuration file. MetalLB’s components will still start, but will remain idle until you start [deploying resources](#configure-metallb).
 
 - #### Configure MetalLB
 
-Layer 2 mode is the simplest to configure: in many cases, you don’t need any protocol-specific configuration, only IP addresses.
+    Layer 2 mode is the simplest to configure: in many cases, you don’t need any protocol-specific configuration, only IP addresses.
 
-Layer 2 mode does not require the IPs to be bound to the network interfaces of your worker nodes. It works by responding to ARP requests on your local network directly, to give the machine’s MAC address to clients.
+    Layer 2 mode does not require the IPs to be bound to the network interfaces of your worker nodes. It works by responding to ARP requests on your local network directly, to give the machine’s MAC address to clients.
 
-In order to advertise the IP coming from an `IPAddressPool`, an `L2Advertisement` instance must be associated to the `IPAddressPool`.
+    In order to advertise the IP coming from an `IPAddressPool`, an `L2Advertisement` instance must be associated to the `IPAddressPool`.
 
-For example, the following configuration gives MetalLB control over IPs from 192.168.1.240 to 192.168.1.250, and configures Layer 2 mode:
+    For example, the following configuration gives MetalLB control over IPs from 192.168.1.240 to 192.168.1.250, and configures Layer 2 mode:
 
-```yaml
-apiVersion: metallb.io/v1beta1
-kind: IPAddressPool
-metadata:
-  name: first-pool
-  namespace: metallb-system
-spec:
-  addresses:
-  - 192.168.1.240-192.168.1.250
-```
+    ```yaml
+    apiVersion: metallb.io/v1beta1
+    kind: IPAddressPool
+    metadata:
+    name: first-pool
+    namespace: metallb-system
+    spec:
+    addresses:
+    - 192.168.1.240-192.168.1.250
+    ```
 
-Now, create a `L2Advertisement` instance that will advertise the IP addresses from the `IPAddressPool`:
+    Now, create a `L2Advertisement` instance that will advertise the IP addresses from the `IPAddressPool`:
 
-```yaml
-apiVersion: metallb.io/v1beta1
-kind: L2Advertisement
-metadata:
-  name: first-advertisement
-  namespace: metallb-system
-```
+    ```yaml
+    apiVersion: metallb.io/v1beta1
+    kind: L2Advertisement
+    metadata:
+    name: first-advertisement
+    namespace: metallb-system
+    ```
 
-Setting no `IPAddressPool` selector in an `L2Advertisement` instance is interpreted as that instance being associated to all the `IPAddressPools` available.
+    Setting no `IPAddressPool` selector in an `L2Advertisement` instance is interpreted as that instance being associated to all the `IPAddressPools` available.
 
-So in case there are specialized `IPAddressPools`, and only some of them must be advertised via L2, the list of `IPAddressPools` we want to advertise the IPs from must be declared (alternative, a label selector can be used).
+    So in case there are specialized `IPAddressPools`, and only some of them must be advertised via L2, the list of `IPAddressPools` we want to advertise the IPs from must be declared (alternative, a label selector can be used).
 
-For example, the following configuration gives MetalLB control over IPs from the first-pool, and configures Layer 2 mode:
+    For example, the following configuration gives MetalLB control over IPs from the first-pool, and configures Layer 2 mode:
 
-```yaml
-apiVersion: metallb.io/v1beta1
-kind: L2Advertisement
-metadata:
-  name: example
-  namespace: metallb-system
-spec:
-  ipAddressPools:
-  - first-pool
-```
+    ```yaml
+    apiVersion: metallb.io/v1beta1
+    kind: L2Advertisement
+    metadata:
+    name: example
+    namespace: metallb-system
+    spec:
+    ipAddressPools:
+    - first-pool
+    ```
 
-Save the above manifests as `ip-address-pool.yaml` and `L2Advertisement.yaml`, and apply them to your cluster:
+    Save the above manifests as `ip-address-pool.yaml` and `L2Advertisement.yaml`, and apply them to your cluster:
 
-```bash
-kubectl apply -f ip-address-pool.yaml -f L2Advertisement.yaml
-```
+    ```bash
+    kubectl apply -f ip-address-pool.yaml -f L2Advertisement.yaml
+    ```
 
-Now You should be able to create a LoadBalancer service and get an IP address from the range you configured:
+    Now You should be able to create a LoadBalancer service and get an IP address from the range you configured:
 
-```bash
-kubectl apply -f service.yaml
-```
+    ```bash
+    kubectl apply -f service.yaml
+    ```
 
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx
-  namespace: default
-spec:
-    type: LoadBalancer
-    ports:
-    - port: 80
-        targetPort: 80
-    selector:
-        app: nginx
-```
-List the services in your cluster:
-```bash
-kubectl get svc nginx
-```
+    ```yaml
+    apiVersion: v1
+    kind: Service
+    metadata:
+    name: nginx
+    namespace: default
+    spec:
+        type: LoadBalancer
+        ports:
+        - port: 80
+            targetPort: 80
+        selector:
+            app: nginx
+    ```
+    List the services in your cluster:
+    ```bash
+    kubectl get svc nginx
+    ```
 
-You should see an IP address assigned to the service:
-```bash
-NAME    TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
-nginx   LoadBalancer   10.0.0.2        192.168.1.241 80:30080/TCP   1m
-```
+    You should see an IP address assigned to the service:
+    ```bash
+    NAME    TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+    nginx   LoadBalancer   10.0.0.2        192.168.1.241 80:30080/TCP   1m
+    ```
 
-> For more information about other configuration options, see the [Configuration](https://metallb.universe.tf/configuration/) section of the documentation.
+    > For more information about other configuration options, see the [Configuration](https://metallb.universe.tf/configuration/) section of the documentation.
 
 
 #### References
