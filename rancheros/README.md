@@ -64,7 +64,7 @@ sudo ros service restart docker
 ```bash
 sudo ros service list
 ```
-- Access Kubernetes by navigating to `http://<ip-address>:8080`.
+- Access Kubernetes dashboard by navigating to `http://<ip-address>:8080`.
 
 ### Setup Rancher Monitoring
 
