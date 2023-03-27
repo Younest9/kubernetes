@@ -90,4 +90,6 @@ sudo ros service list
     - Customizing RancherOS: https://rancher.com/docs/os/v1.x/en/installation/configuration/custom-config/
     - RancherOS Cloud-Config: https://rancher.com/docs/os/v1.x/en/installation/configuration/cloud-config/
     - RancherOS Cloud-Config Examples: https://rancher.com/docs/os/v1.x/en/installation/configuration/examples/
+    - RancherOS Services: https://rancher.com/docs/os/v1.x/en/installation/configuration/services/
+    - RancherOS System Services: https://rancher.com/docs/os/v1.x/en/installation/configuration/system-services/
 
