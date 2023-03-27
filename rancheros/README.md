@@ -33,6 +33,54 @@ RancherOS is a tiny Linux distribution that runs the entire OS as a Docker conta
     
 3. Reboot your machine.
 
+### Setup Rancher
+
+- Disable tls on docker daemon by running the following command:
+```bash	
+sudo ros config set rancher.docker.tls false
+```
+- Restart docker daemon by running the following command:
+```bash
+sudo ros service restart docker
+```
+- Install Rancher by running the following command:
+```bash
+sudo docker run -d --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher
+```
+- Access Rancher by navigating to `http://<ip-address>`.
+- Login to Rancher using the default username `admin` and password `admin`.
+
+### Setup Kubernetes
+
+- Enable Kubernetes by running the following command:
+```bash
+sudo ros config set rancher.services.kubelet.enable true
+```
+- Restart docker daemon by running the following command:
+```bash
+sudo ros service restart docker
+```
+- Wait for Kubernetes to be ready. You can check the status of Kubernetes by running the following command:
+```bash
+sudo ros service list
+```
+- Access Kubernetes by navigating to `http://<ip-address>:8080`.
+
+### Setup Rancher Monitoring
+
+- Enable Rancher Monitoring by running the following command:
+```bash
+sudo ros config set rancher.services.monitoring.enable true
+```
+- Restart docker daemon by running the following command:
+```bash
+sudo ros service restart docker
+```
+- Wait for Rancher Monitoring to be ready. You can check the status of Rancher Monitoring by running the following command:
+```bash
+sudo ros service list
+```
+- Access Rancher Monitoring by navigating to `http://<ip-address>:9090`.
 
 #### References
 
