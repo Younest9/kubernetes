@@ -16,16 +16,16 @@ MetalLB runs on your Kubernetes cluster, and announces services by creating BGP 
 
 MetalLB requires a network addon to be installed on your cluster. The following network addons are supported:
   
-| Network Addon | Compatibility | Comments |
+| Network Addon | Compatibility | Supported |
 | --- | --- | --- |
-| [Antrea](https://github.com/jayunit100/k8sprototypes/tree/master/kind/metallb-antrea) | <p align=center>✅</p> | |
-| [Calico](https://docs.tigera.io/calico/latest/about) | <p align=center>✔️</p>  | (Mostly - [See Known Issues](https://metallb.universe.tf/configuration/calico/)) |
-| [Canal](https://docs.projectcalico.org/getting-started/kubernetes/flannel/flannel) | <p align=center>✅</p> | |
-| [Cilium](https://docs.cilium.io/en/stable/) | <p align=center>✅</p> | |
-| [Flannel](https://github.com/flannel-io/flannel) | <p align=center>✅</p> | |
-| [Kube-ovn](https://kubeovn.github.io/docs/v1.11.x/en/start/prepare/) | <p align=center>✅</p> | |
-| [Kube-router](https://www.kube-router.io/docs/) | <p align=center>✔️</p> | (Mostly - [See Known Issues](https://metallb.universe.tf/configuration/kube-router/)) |
-| [Weave Net](https://www.weave.works/docs/net/latest/kubernetes/kube-addon/) | <p align=center>✔️</p>  | (Mostly - [See Known Issues](https://metallb.universe.tf/configuration/weave/)) |
+| [Antrea](https://github.com/jayunit100/k8sprototypes/tree/master/kind/metallb-antrea) | <p align=center>✅</p> | <p align=center>Yes</p> |
+| [Calico](https://docs.tigera.io/calico/latest/about) | <p align=center>✔️</p>  | Mostly - [See Known Issues](https://metallb.universe.tf/configuration/calico/) |
+| [Canal](https://docs.projectcalico.org/getting-started/kubernetes/flannel/flannel) | <p align=center>✅</p> | <p align=center>Yes</p> |
+| [Cilium](https://docs.cilium.io/en/stable/) | <p align=center>✅</p> | <p align=center>Yes</p> |
+| [Flannel](https://github.com/flannel-io/flannel) | <p align=center>✅</p> | <p align=center>Yes</p> |
+| [Kube-ovn](https://kubeovn.github.io/docs/v1.11.x/en/start/prepare/) | <p align=center>✅</p> | <p align=center>Yes</p> |
+| [Kube-router](https://www.kube-router.io/docs/) | <p align=center>✔️</p> | Mostly - [See Known Issues](https://metallb.universe.tf/configuration/kube-router/) |
+| [Weave Net](https://www.weave.works/docs/net/latest/kubernetes/kube-addon/) | <p align=center>✔️</p>  | Mostly - [See Known Issues](https://metallb.universe.tf/configuration/weave/) |
 
 
 #### Configuration
