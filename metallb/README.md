@@ -96,9 +96,9 @@ The Layer 2 configuration is the simplest way to get started with MetalLB. It re
 
     This will deploy MetalLB to your cluster, under the metallb-system namespace. The components in the manifest are:
 
-        The metallb-system/controller deployment. This is the cluster-wide controller that handles IP address assignments.
-        The metallb-system/speaker daemonset. This is the component that speaks the protocol(s) of your choice to make the services reachable.
-        Service accounts for the controller and speaker, along with the RBAC permissions that the components need to function.
+    - The metallb-system/controller deployment. This is the cluster-wide controller that handles IP address assignments.
+    - The metallb-system/speaker daemonset. This is the component that speaks the protocol(s) of your choice to make the services reachable.
+    - Service accounts for the controller and speaker, along with the RBAC permissions that the components need to function.
 
     The installation manifest does not include a configuration file. MetalLB’s components will still start, but will remain idle until you start [deploying resources](#configure-metallb).
 
@@ -116,11 +116,11 @@ The Layer 2 configuration is the simplest way to get started with MetalLB. It re
     apiVersion: metallb.io/v1beta1
     kind: IPAddressPool
     metadata:
-    name: first-pool
-    namespace: metallb-system
+        name: first-pool
+        namespace: metallb-system
     spec:
-    addresses:
-    - 192.168.1.240-192.168.1.250
+        addresses:
+        - 192.168.1.240-192.168.1.250
     ```
 
     Now, create a `L2Advertisement` instance that will advertise the IP addresses from the `IPAddressPool`:
@@ -129,8 +129,8 @@ The Layer 2 configuration is the simplest way to get started with MetalLB. It re
     apiVersion: metallb.io/v1beta1
     kind: L2Advertisement
     metadata:
-    name: first-advertisement
-    namespace: metallb-system
+        name: first-advertisement
+        namespace: metallb-system
     ```
 
     Setting no `IPAddressPool` selector in an `L2Advertisement` instance is interpreted as that instance being associated to all the `IPAddressPools` available.
@@ -143,11 +143,11 @@ The Layer 2 configuration is the simplest way to get started with MetalLB. It re
     apiVersion: metallb.io/v1beta1
     kind: L2Advertisement
     metadata:
-    name: example
-    namespace: metallb-system
+        name: example
+        namespace: metallb-system
     spec:
-    ipAddressPools:
-    - first-pool
+        ipAddressPools:
+        - first-pool
     ```
 
     Save the above manifests as `ip-address-pool.yaml` and `L2Advertisement.yaml`, and apply them to your cluster:
@@ -166,8 +166,8 @@ The Layer 2 configuration is the simplest way to get started with MetalLB. It re
     apiVersion: v1
     kind: Service
     metadata:
-    name: nginx
-    namespace: default
+        name: nginx
+        namespace: default
     spec:
         type: LoadBalancer
         ports:
