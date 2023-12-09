@@ -1,16 +1,18 @@
 # Kubernetes
--  [Overview](#overview)
--  [Why Kubernetes ?](#why-kubernetes-)
--  [What Kubernetes is not](#what-kubernetes-is-not)
--  [Distributions](#distributions)
--  [SSH Tunneling](#ssh-tunneling)
--  [Aliases - Optional](#aliases---optional)
 
-## Overview 
+- [Overview](#overview)
+- [Why Kubernetes ?](#why-kubernetes-)
+- [What Kubernetes is not](#what-kubernetes-is-not)
+- [Distributions](#distributions)
+- [SSH Tunneling](#ssh-tunneling)
+- [Aliases - Optional](#aliases---optional)
+- [References](#references)
+
+## Overview
 
 Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications.
 
-It groups containers that make up an application into logical units for easy management and discovery. 
+It groups containers that make up an application into logical units for easy management and discovery.
 
 ## Why Kubernetes ?
 
@@ -20,14 +22,16 @@ That's how Kubernetes comes to the rescue! Kubernetes provides you with a framew
 
 Kubernetes provides you with:
 
-- <strong>Service discovery and load balancing</strong> Kubernetes can expose a container using the DNS name or using their own IP address. If traffic to a container is high, Kubernetes is able to load balance and distribute the network traffic so that the deployment is stable.
-- <strong>Storage orchestration</strong>Kubernetes allows you to automatically mount a storage system of your choice, such as local storages, public cloud providers, and more.
-- <strong>Automated rollouts and rollbacks </strong>You can describe the desired state for your deployed containers using Kubernetes, and it can change the actual state to the desired state at a controlled rate.
+- **Service discovery and load balancing** Kubernetes can expose a container using the DNS name or using their own IP address. If traffic to a container is high, Kubernetes is able to load balance and distribute the network traffic so that the deployment is stable.
+- **Storage orchestration** Kubernetes allows you to automatically mount a storage system of your choice, such as local storages, public cloud providers, and more.
+- **Automated rollouts and rollbacks** You can describe the desired state for your deployed containers using Kubernetes, and it can change the actual state to the desired state at a controlled rate.
   - For example, you can automate Kubernetes to create new containers for your deployment, remove existing containers and adopt all their resources to the new container.
-- <strong>Automatic bin packing</strong>You provide Kubernetes with a cluster of nodes that it can use to run containerized tasks. You tell Kubernetes how much CPU and memory (RAM) each container needs. Kubernetes can fit containers onto your nodes to make the best use of your resources.
-- <strong>Self-healing</strong> Kubernetes restarts containers that fail, replaces containers, kills containers that don't respond to your user-defined health check, and doesn't advertise them to clients until they are ready to serve.
-- <strong>Secret and configuration management</strong> Kubernetes lets you store and manage sensitive information, such as passwords, OAuth tokens, and SSH keys. You can deploy and update secrets and application configuration without rebuilding your container images, and without exposing secrets in your stack configuration.
-## What Kubernetes is not 
+- **Automatic bin packing** You provide Kubernetes with a cluster of nodes that it can use to run containerized tasks. You tell Kubernetes how much CPU and memory (RAM) each container needs. Kubernetes can fit containers onto your nodes to make the best use of your resources.
+- **Self-healing** Kubernetes restarts containers that fail, replaces containers, kills containers that don't respond to your user-defined health check, and doesn't advertise them to clients until they are ready to serve.
+- **Secret and configuration management** Kubernetes lets you store and manage sensitive information, such as passwords, OAuth tokens, and SSH keys. You can deploy and update secrets and application configuration without rebuilding your container images, and without exposing secrets in your stack configuration.
+
+## What Kubernetes is not
+
 Kubernetes is not a traditional, all-inclusive PaaS (Platform as a Service) system. Since Kubernetes operates at the container level rather than at the hardware level, it provides some generally applicable features common to PaaS offerings, such as deployment, scaling, load balancing, and lets users integrate their logging, monitoring, and alerting solutions. However, Kubernetes is not monolithic, and these default solutions are optional and pluggable. Kubernetes provides the building blocks for building developer platforms, but preserves user choice and flexibility where it is important.
 
 Kubernetes:
@@ -43,22 +47,35 @@ Kubernetes:
 ## Distributions
 
 There are a lot of distributions that kubernetes comes in, but the most known are:
-- The traditional distribution, known as <strong>k8s</strong> : -> [Documentation](k8s/README.md)
-- <strong>Openshift</strong>, which is a kubernetes distribution with a lot of extra features, such as a web console, a CLI, a lot of pre-installed operators, and more: -> [Documentation](https://github.com.younest9/ocp/)
-- <Strong>OKD</Strong>, which is the upstream version of Openshift (Community version). -> [Documentation](https://github.com.younest9/okd/)
-- <strong>Minikube</strong>, which is a single-node kubernetes cluster that runs on your local machine. It's a great way to test kubernetes without having to install it on your machine.
-- <strong>Microk8s</strong>, which is a low-ops, minimal production Kubernetes.  It provides the functionality of core Kubernetes components, in a small footprint, scalable from a single node to a high-availability production cluster.
-- <strong>K3s</strong>, which is a lightweight kubernetes distribution that runs as a single binary, it's similar to k8s but it's a lot lighter: -> [Documentation](k3s/README.md)
-- <strong>K3d</strong>, which is a lightweight wrapper to run <strong>k3s</strong> in docker.
 
->Note: 
-> - You can also run kubernetes on RancherOS using <strong>RKE</strong> (Rancher Kubernetes Engine), which is a lightweight Kubernetes installer that works everywhere. You can try that, start [here](rancheros/README.md).
+- The traditional distribution, known as **k8s** : -> [Documentation](k8s/README.md)
+
+- **Openshift**, which is a kubernetes distribution with a lot of extra features, such as a web console, a CLI, a lot of pre-installed operators, and more: -> [Documentation](https://github.com.younest9/ocp/)
+
+- **OKD**, which is the upstream version of Openshift (Community version). -> [Documentation](https://github.com.younest9/okd/)
+
+- **Minikube**, which is a single-node kubernetes cluster that runs on your local machine. It's a great way to test kubernetes without having to install it on your machine.
+
+- **Microk8s**, which is a low-ops, minimal production Kubernetes.  It provides the functionality of core Kubernetes components, in a small footprint, scalable from a single node to a high-availability production cluster.
+
+- **K3s**, which is a lightweight kubernetes distribution that runs as a single binary, it's similar to k8s but it's a lot lighter: -> [Documentation](k3s/README.md)
+
+- **K3d**, which is a lightweight wrapper to run **k3s** in docker.
+
+>Note:
+>
+> - You can also run kubernetes on RancherOS using **RKE** (Rancher Kubernetes Engine), which is a lightweight Kubernetes installer that works everywhere. You can try that, start [here](rancheros/README.md).
+
+## SSH Tunneling
+
+If you want to access the services that are running on your kubernetes cluster, you can use [SSH Tunneling](./SSH%20Tunneling.md).
 
 ## Aliases - Optional
 
 You can check aliases that are in the [setup-aliases.sh](setup-aliases.sh).
 If you want to use them, you can run the script and it will add them to your .bashrc file.
 Run the following command:
+
 ```bash
 chmod +x setup-aliases.sh
 ./setup-aliases.sh
@@ -69,12 +86,12 @@ chmod +x setup-aliases.sh
 >- You can also add other aliases manually to your .bashrc file.
 >- You can also remove the aliases that you don't want to use.
 
+## References
 
-Sources: 
-- Kubernetes documentation: https://kubernetes.io/docs/home/
-- Microk8s documentation: https://microk8s.io/docs
-- Minikube documentation: https://minikube.sigs.k8s.io/docs/
-- K3s documentation: https://k3s.io/docs/
-- K3d documentation: https://k3d.io/
-- Openshift documentation: https://docs.openshift.com/
-- OKD documentation: https://docs.okd.io/
+- Kubernetes documentation: <https://kubernetes.io/docs/home/>
+- Microk8s documentation: <https://microk8s.io/docs>
+- Minikube documentation: <https://minikube.sigs.k8s.io/docs/>
+- K3s documentation: <https://k3s.io/docs/>
+- K3d documentation: <https://k3d.io/>
+- Openshift documentation: <https://docs.openshift.com/>
+- OKD documentation: <https://docs.okd.io/>
