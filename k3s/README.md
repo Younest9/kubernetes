@@ -1,11 +1,11 @@
-## k3s cluster setup
+# K3S
 
 You can select which part you want by jumping to the section you want.
 
-### Table of Contents
+## Table of Contents
 
 - [Overview](#overview)
-- [What is K3s?](#what-is-k3s)
+- [What is K3S?](#what-is-k3s)
 - [Naming](#naming)
 - [Architecture](#architecture)
 - [Prerequisites](#prerequisites)
@@ -29,7 +29,7 @@ Great for:
 - Embedding K8s
 - Situations where a PhD in K8s clusterology is infeasible
 
-### What is K3s?
+### What is K3S?
 
 K3s is a fully compliant Kubernetes distribution with the following enhancements:
 
@@ -71,52 +71,51 @@ Whether you're configuring K3s to run in a container or as a native Linux servic
 - Two nodes cannot have the same hostname.
 
     >If multiple nodes will have the same hostname, or if hostnames may be reused by an automated provisioning system, use the --with-node-id option to append a random suffix for each node, or devise a unique name to pass with --node-name or $K3S_NODE_NAME for each node you add to the cluster.
-- <Strong>Architecture:</Strong> K3s is available for the following architectures:
+- **Architecture:** K3s is available for the following architectures:
 
-    - x86_64
-    - armhf
-    - arm64/aarch64
+  - x86_64
+  - armhf
+  - arm64/aarch64
         >On `arm64/aarch64` systems, the OS must use a 4k page size. RHEL9, Ubuntu, and SLES all meet this requirement.
-    - s390x
-- <Strong>Operating Systems:</Strong> K3s is expected to work on most modern Linux systems. Some OSs have specific requirements:
-    - If you are using (Red Hat/CentOS) Enterprise Linux, follow [these steps]() for additional setup (SELinux, firewalld, etc.)
-    - If you are using Raspberry Pi OS, follow [these steps]() to switch to legacy iptables.
+  - s390x
+- **Operating Systems:** K3s is expected to work on most modern Linux systems. Some OSs have specific requirements:
+  - If you are using (Red Hat/CentOS) Enterprise Linux, follow [these steps](https://docs.k3s.io/installation/requirements?os=rhel) to setup the necessary requirements.
+  - If you are using Raspberry Pi OS, follow [these steps](https://docs.k3s.io/installation/requirements?os=pi) to setup the necessary requirements.
     >For more information on which OSs were tested with Rancher managed K3s clusters, refer to the [Rancher support and maintenance terms](https://rancher.com/support-maintenance-terms/).
-- <Strong>Hardware:</Strong> Hardware requirements scale based on the size of your deployments. Minimum recommendations are outlined here.
+  - If you are using Debian based OSs, follow [these steps](https://docs.k3s.io/installation/requirements?os=debian) to setup the necessary requirements.
+- **Hardware:** Hardware requirements scale based on the size of your deployments. Minimum recommendations are outlined here.
 
     | Spec | Minimum | Recommended |
     | --- | --- | --- |
-    | CPU	| 1 core	| 2 cores |
-    | RAM	| 512 MB	| 1 GB |
-
+    | CPU | 1 core | 2 cores |
+    | RAM | 512 MB | 1 GB |
 
     >[Resource Profiling](https://docs.k3s.io/reference/resource-profiling) captures the results of tests to determine minimum resource requirements for the K3s agent, the K3s server with a workload, and the K3s server with one agent. It also contains analysis about what has the biggest impact on K3s server and agent utilization, and how the cluster datastore can be protected from interference from agents and workloads.
 
-    - <Strong>Disks:</Strong> K3s performance depends on the performance of the database. To ensure optimal speed, we recommend using an SSD when possible. Disk performance will vary on ARM devices utilizing an SD card or eMMC.
+  - **Disks:** K3s performance depends on the performance of the database. To ensure optimal speed, we recommend using an SSD when possible. Disk performance will vary on ARM devices utilizing an SD card or eMMC.
 
-- <strong>Networking:</Strong> Inbound Rules for K3s Server Nodes:
+- **Networking:** Inbound Rules for K3s Server Nodes:
 
     | Protocol | Port | Source | Destination | Description |
     | --- | --- | --- | --- | --- |
-    | TCP | 2379-2380 | Servers	| Servers |	Required only for HA with embedded etcd |
-    | TCP |	6443 | Agents | Servers | K3s supervisor and Kubernetes API Server |
-    | UDP |	8472 | All nodes | All nodes | Required only for Flannel VXLAN |
-    | TCP |	10250 |	All nodes | All nodes |	Kubelet metrics |
-    | UDP |	51820 |	All nodes |	All nodes |	Required only for Flannel Wireguard with IPv4 |
-    | UDP | 51821 |	All nodes |	All nodes |	Required only for Flannel Wireguard with IPv6 |
+    | TCP | 2379-2380 | Servers | Servers | Required only for HA with embedded etcd |
+    | TCP | 6443 | Agents | Servers | K3s supervisor and Kubernetes API Server |
+    | UDP | 8472 | All nodes | All nodes | Required only for Flannel VXLAN |
+    | TCP | 10250 | All nodes | All nodes | Kubelet metrics |
+    | UDP | 51820 | All nodes | All nodes | Required only for Flannel Wireguard with IPv4 |
+    | UDP | 51821 | All nodes | All nodes | Required only for Flannel Wireguard with IPv6 |
 
     Typically, all outbound traffic is allowed.
 
     Additional changes to the firewall may be required depending on the OS used. See [Additional OS Preparations](https://docs.k3s.io/advanced#additional-os-preparations).
-
 
 - Configure iptables (If necessary)
     >The following steps apply common settings for Kubernetes nodes on Linux.
   
     Forwarding IPv4 and letting iptables see bridged traffic
     >The following commands enable IPv4 forwarding and allow iptables to see bridged traffic:
-    
-    ```bash	
+
+    ```bash
     cat <<EOF | tee /etc/modules-load.d/k8s.conf
     overlay
     br_netfilter
@@ -135,19 +134,22 @@ Whether you're configuring K3s to run in a container or as a native Linux servic
     # Apply sysctl params without reboot
     sudo sysctl --system
     ```
+
     Verify that the `br_netfilter`, `overlay` modules are loaded by running below instructions:
-    
+
     ```bash
     lsmod | grep br_netfilter
     lsmod | grep overlay
     ```
+
     Verify that the `net.bridge.bridge-nf-call-iptables`, `net.bridge.bridge-nf-call-ip6tables`, `net.ipv4.ip_forward` system variables are set to 1 in your sysctl config by running below instruction:
-        
+
     ```bash
     sysctl net.bridge.bridge-nf-call-iptables
     sysctl net.bridge.bridge-nf-call-ip6tables
     sysctl net.ipv4.ip_forward
     ```
+
     >If the output is not 1, run the following commands to set the variables:
     >
     >```bash
@@ -159,10 +161,11 @@ Whether you're configuring K3s to run in a container or as a native Linux servic
 ### Installation
 
 - Deploy k3s server (cluster)
-    
+
     ```bash
     curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=<RELEASE_VERSION> K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="server" K3S_TOKEN=<TOKEN> sh -s - server --cluster-init
     ```
+
     >- Replace `<RELEASE_VERSION>` with the version of k3s you want to install. For example, `v1.21.3+k3s1`. If you don't specify a version, the latest version will be installed.
     >
     >- Replace `<TOKEN>` with the token you want to use to join the cluster. If you don't specify a token, a random token will be generated.
@@ -186,6 +189,7 @@ Whether you're configuring K3s to run in a container or as a native Linux servic
     ```bash
     curl -sfL https://get.k3s.io | K3S_TOKEN=<TOKEN> INSTALL_K3S_EXEC="agent" sh -s - --server https://<IP-ADDRESS-OF-SERVER>:6443 -
     ```
+
     >- Replace `<TOKEN>` with the token you want to use to join the cluster. If you don't specify a token, a random token will be generated.
     >
     >- Replace `<SERVER_IP>` with the IP address of the server.
@@ -193,35 +197,41 @@ Whether you're configuring K3s to run in a container or as a native Linux servic
     >- You can also specify the `--node-label` flag to specify the labels for the node. For example, `--node-label=foo=bar`".
 
 ### Configuration
+>
 > It's best to run the following commands in root user to avoid any permission issues.
+
 - Config file location:
 
-    - K3s Server:
+  - K3s Server:
 
-        ```bash
-        /etc/rancher/k3s/k3s.yaml
-        ```
+    ```bash
+    /etc/rancher/k3s/k3s.yaml
+    ```
 
-    - K3s Agent:
+  - K3s Agent:
 
-        ```bash
-        /etc/rancher/k3s/k3s.yaml
-        ```
+    ```bash
+    /etc/rancher/k3s/k3s.yaml
+    ```
+
 - Copy config file to .kube directory
 
     ```bash
     sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
     ```
+
 - Set config file permissions
 
     ```bash
     sudo chmod 600 ~/.kube/config
     ```
+
 - Set config file ownership
 
     ```bash
     sudo chown $(id -u):$(id -g) ~/.kube/config
     ```
+
 - Install kubectl
 
     ```bash
@@ -237,11 +247,13 @@ Whether you're configuring K3s to run in a container or as a native Linux servic
     ```bash
     curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
     ```
+
 - Export the kubeconfig file to your personal workstation to interact with the cluster from there (Optional)
 
     ```bash
     scp root@<SERVER_IP>:/etc/rancher/k3s/k3s.yaml ~/.kube/config
     ```
+
 > Replace `<SERVER_IP>` with the IP address of the server.
 
 ### SSH Tunneling
@@ -251,46 +263,57 @@ If you want to access your kubernetes workloads using SSH, you can use SSH tunne
 You can check that in the [SSH-Tunneling.md](../SSH%20Tunneling.md) file.
 
 ### Uninstallation
+
 - Uninstall k3s server (cluster)
+
     ```bash
     /usr/local/bin/k3s-uninstall.sh
     ```
+
 - Uninstall k3s agent (worker node)
+
     ```bash
     /usr/local/bin/k3s-agent-uninstall.sh
     ```
 
 ### Troubleshooting
+
 - Check k3s server logs
 
     ```bash
     journalctl -u k3s
     ```
+
 - Check k3s agent logs
 
     ```bash
     journalctl -u k3s-agent
     ```
+
 - Check k3s server status
 
     ```bash
     systemctl status k3s
     ```
+
 - Check k3s agent status
 
     ```bash
     systemctl status k3s-agent
     ```
+
 - Check k3s server version
 
     ```bash
     k3s --version
     ```
+
 - Check k3s agent version
 
     ```bash
     k3s --version
     ```
+
 - Check k3s process (server and agent)
 
     ```bash
@@ -299,10 +322,10 @@ You can check that in the [SSH-Tunneling.md](../SSH%20Tunneling.md) file.
 
 #### References
 
-- K3s documentation: https://k3s.io/
-    - K3s install options: https://docs.k3s.io/installation/install-options/
-    - K3s uninstall: https://rancher.com/docs/k3s/latest/en/installation/uninstall/
-    - K3s troubleshooting: https://rancher.com/docs/k3s/latest/en/advanced/#troubleshooting
-- Flannel GitHub: https://github.com/flannel-io/flannel#deploying-flannel-manually
-- Helm: https://helm.sh/docs/intro/install/
-- Kubectl: https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
+- K3s documentation: <https://k3s.io/>
+  - K3s install options: <https://docs.k3s.io/installation/install-options/>
+  - K3s uninstall: <https://rancher.com/docs/k3s/latest/en/installation/uninstall/>
+  - K3s troubleshooting: <https://rancher.com/docs/k3s/latest/en/advanced/#troubleshooting>
+- Flannel GitHub: <https://github.com/flannel-io/flannel#deploying-flannel-manually>
+- Helm: <https://helm.sh/docs/intro/install/>
+- Kubectl: <https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/>
