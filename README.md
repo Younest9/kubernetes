@@ -95,3 +95,7 @@ chmod +x setup-aliases.sh
 - K3d documentation: <https://k3d.io/>
 - Openshift documentation: <https://docs.openshift.com/>
 - OKD documentation: <https://docs.okd.io/>
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
