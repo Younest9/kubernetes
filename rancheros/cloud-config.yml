@@ -1,0 +1,13 @@
+hostname: <HOSTNAME>
+rancher:
+  console: <TYPE_OF_CONSOLE>
+  keyboard-configuration: fr-FR
+  network:
+    interfaces:
+      eth0:
+        address: <IP_ADDRESS>/<CIDR> #IP Address & netmask
+        gateway: <IP_ADDRESS_OF_GATEWAY> #IP Address of gateway
+  services_include:
+    qemu-guest-agent: true
+  ssh_authorized_keys:
+  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDY3QgRnWtzEnmPCz3gSqtgK1OMMtBDYHAuTMqQEJA+hIiQumSJ0oIUTGSijhcJJHMZsOCSgI/avUG1R+U/W2ipL6UkI1ai1pc9E0MXYEdU8NT7ke4lE8/w7LCxkhDiy+lM1jHh2o5C96Kwrh7Kxzzil791r1K7AyCH+6tS0nFlHAN0KqcLKg2ZG7b7DnBeryMyqG+YsIBeR30hqUvVsNp6dt6Tmb3L999W3tnIGOWacaQ1sxsEC8k5MeZJqIYjCWeoQ8kpO2jHcOUyTVZDO6TSHRdTmhrjLIpb5mTEvn5hM0eCcfe0qBI+NttUolxB7l2/sRYFZATXGOB7E3q3nOox administrateur@PC_9KC2J72

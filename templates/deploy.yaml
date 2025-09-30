@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: <name>
+  namespace: <namespace>
+  labels:
+    <key>: <value>
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      <key>: <value>
+  template:
+    metadata:
+      labels:
+        <key>: <value>
+    spec:
+      containers:
+      - image: <image>
+        name: <container-name>
+        ports:
+        - containerPort: <port>
+          protocol: <TCP/UDP>
+          name: <port-name> # If you have multiple ports
+        env:
+        - name: <key>
+          value: <value>
+        volumeMounts:
+        - name: <volume-name>
+          mountPath: <path>
+      volumes:
+      - name: <volume-name>
+        persistentVolumeClaim:
+          claimName: <claim-name>
