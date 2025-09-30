@@ -1,0 +1,24 @@
+# Ignore sensitive files
+secret.yaml
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+*.jks
+*.keystore
+
+# Ignore SSL certificates and keys
+**/ssl/**
+**/certs/**
+**/certificates/**
+
+# Ignore test directories with sensitive data
+**/test/**
+**/fibi/**
+
+# Ignore any files containing sensitive data
+*secret*
+*cert*
+*key*
+*tls*
