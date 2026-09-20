@@ -1,5 +1,9 @@
 # Kubernetes
 
+**Last verified:** September 20, 2026 (homelab notes; re-check against your cluster version).
+
+Folder `rancher-unfinished/` is historical WIP — prefer `k3s/`, `k8s/`, `traefik/`, `metallb/`.
+
 - [Overview](#overview)
 - [Why Kubernetes ?](#why-kubernetes-)
 - [What Kubernetes is not](#what-kubernetes-is-not)
