@@ -1,7 +1,10 @@
 # Kubernetes
 
-Folder `rancher-unfinished/` is historical WIP — prefer `k3s/`, `k8s/`, `traefik/`, `metallb/`.
+## What's in this repo
 
+Lab notes and scripts for Kubernetes distributions (k8s, k3s), Traefik ingress, MetalLB, RancherOS/RKE experiments, TLS secret rotation helpers, and related cluster aliases. Folder `rancher-unfinished/` is historical WIP — prefer `k3s/`, `k8s/`, `traefik/`, `metallb/`.
+
+- [What's in this repo](#whats-in-this-repo)
 - [Overview](#overview)
 - [Why Kubernetes ?](#why-kubernetes-)
 - [What Kubernetes is not](#what-kubernetes-is-not)
@@ -52,9 +55,9 @@ There are a lot of distributions that kubernetes comes in, but the most known ar
 
 - The traditional distribution, known as **k8s** : -> [Documentation](k8s/README.md)
 
-- **Openshift**, which is a kubernetes distribution with a lot of extra features, such as a web console, a CLI, a lot of pre-installed operators, and more: -> [Documentation](https://github.com.younest9/ocp/)
+- **Openshift**, which is a kubernetes distribution with a lot of extra features, such as a web console, a CLI, a lot of pre-installed operators, and more: -> [Documentation](https://docs.openshift.com/)
 
-- **OKD**, which is the upstream version of Openshift (Community version). -> [Documentation](https://github.com.younest9/okd/)
+- **OKD**, which is the upstream version of Openshift (Community version). -> [Documentation](https://github.com/Younest9/okd)
 
 - **Minikube**, which is a single-node kubernetes cluster that runs on your local machine. It's a great way to test kubernetes without having to install it on your machine.
 
